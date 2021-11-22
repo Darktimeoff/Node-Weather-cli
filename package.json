@@ -6,11 +6,12 @@
   "type": "module",
   "main": "weather.js",
   "bin": {
-	"weather": "weather.js"
+    "weather": "weather.js",
+    "start": "node weather.js"
   },
   "scripts": {
     "start": "node index.js",
-	"gulp": "gulp index.js",
+    "gulp": "gulp index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -29,7 +30,9 @@
     "email": "alexkorolixinofficial@gmail.com"
   },
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "dedent-js": "^1.0.1"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
