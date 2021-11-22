@@ -1,16 +1,27 @@
 #!/usr/bin/env node
-import {getArgs} from './helpers/index.js';
-import { printHelp } from './services/log.service.js';
+//@ts-check
+import { getArgs } from './helpers/index.js';
+import { printHelp, printError, printSuccess } from './services/log.service.js';
+import { saveKeyVal, getKeyVal } from './services/storage.service.js';
 
-const initCLI = () => {
+async function saveToken(v = '') {
+	try {
+		await saveKeyVal('token', v);
+		printSuccess('Токен сохранен')
+	} catch (e) {
+		printError(e.message);
+	}
+}
+
+const initCLI = async () => {
 	const args = getArgs(process.argv);
 	
 	if(args.h) {
-		printHelp('HELP')
+		printHelp()
 	}
 
 	if(args.t) {
-		saveKeyVal('token', args.t);
+		return saveToken(args.t);
 	}
 };
 
