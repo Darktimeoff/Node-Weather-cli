@@ -1,18 +1,15 @@
 {
-  "name": "weather-cli",
+  "name": "weather-cli-test-npm-project",
   "version": "1.0.0",
   "private": false,
   "description": "CLI for getting weather",
   "type": "module",
   "main": "weather.js",
   "bin": {
-    "weather": "weather.js",
-    "start": "node weather.js"
+    "weather": "weather.js"
   },
   "scripts": {
     "start": "node index.js",
-    "gulp": "gulp index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "cli",
