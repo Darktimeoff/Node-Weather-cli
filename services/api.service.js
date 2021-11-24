@@ -3,7 +3,7 @@ import { TOKEN_DICTIONARY } from "../conts.js";
 import { getKeyVal } from "./storage.service.js";
 
 export async function getWeather(cityParams) {
-	const token = await getKeyVal(TOKEN_DICTIONARY.token);
+	const token = process.env.token ?? await getKeyVal(TOKEN_DICTIONARY.token);
 	
 	if(!token) {
 		throw new Error('Не задан ключ API, задайте его через команду -t [API_KEY]')
