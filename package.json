@@ -9,7 +9,7 @@
     "weather": "weather.js"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js"
   },
   "keywords": [
     "cli",
