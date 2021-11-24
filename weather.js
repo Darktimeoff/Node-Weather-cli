@@ -20,13 +20,13 @@ async function saveToken(v = '') {
 	}
 }
 
-async function saveCity(v = '') {
-	if(!v.length) {
+async function saveCity(city = '') {
+	if(!city.length) {
 		printError('Не передан город')
 	}
 
 	try {
-		await saveKeyVal(TOKEN_DICTIONARY.city, v);
+		await saveKeyVal(TOKEN_DICTIONARY.city, city);
 		printSuccess('Город сохранен')
 	} catch(e) {
 		printError(e.message);
@@ -68,7 +68,7 @@ const initCLI = async () => {
 	}
 
 	if(args.t) {
-		await saveToken(args.t);
+		return await saveToken(args.t);
 	}
 
 	getForcast();
