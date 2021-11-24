@@ -3,7 +3,7 @@
 import { TOKEN_DICTIONARY } from './conts.js';
 import { getArgs } from './helpers/index.js';
 import { getWeather } from './services/api.service.js';
-import { printHelp, printError, printSuccess } from './services/log.service.js';
+import { printHelp, printError, printSuccess, printWeather } from './services/log.service.js';
 import { saveKeyVal, getKeyVal } from './services/storage.service.js';
 
 async function saveToken(v = '') {
@@ -35,15 +35,15 @@ async function saveCity(city = '') {
 
 async function getForcast() {
 	try {
-		const city = process.env.city || await getKeyVal(TOKEN_DICTIONARY.city);
+		const city = process.env.city ?? await getKeyVal(TOKEN_DICTIONARY.city);
 
 		if(!city.trim()) {
 			printError('Введите пожалуйста город -s [CITY]')
 			return;
 		}
 
-		const weather = await getWeather(city);
-		console.log(weather)
+		const resp = await getWeather(city);
+		printWeather(resp, '');
 	} catch(e) {
 		const cod = e?.response?.data.cod;
 
@@ -60,18 +60,18 @@ const initCLI = async () => {
 	const args = getArgs(process.argv);
 
 	if(args.h) {
-		printHelp()
+		return printHelp()
 	}
 
 	if(args.s) {
-		await saveCity(args.s);
+		return await saveCity(args.s);
 	}
 
 	if(args.t) {
 		return await saveToken(args.t);
 	}
 
-	getForcast();
+	return getForcast();
 };
 
 initCLI();

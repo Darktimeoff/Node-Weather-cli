@@ -19,7 +19,7 @@ export async function getWeather(cityParams) {
 		q: city,
 		appid: token,
 		lang: 'ru',
-		unit: 'metric'
+		units: 'metric'
 	}
 
 	const {data} = await axios.get('https://api.openweathermap.org/data/2.5/weather', {params});
